@@ -88,15 +88,16 @@ public class DataInitializer {
             this.seedUser();
             this.seedTopic();
             this.seedDifficulty();
-            questionOptionRepository.deleteAll();
-            questionTestRepository.deleteAll();
-            testRepository.deleteAll();
+            
             this.seedTest();
         };
     }
 
     public void seedTest() {
-
+        if(testRepository.count() > 0) {
+            log.info("Tests already seeded");
+            return;
+        }
         var topicFamily = topicTestRepository.findById(1L).get();     // Family
         var topicWork = topicTestRepository.findById(2L).get();       // Work
         var topicEducation = topicTestRepository.findById(3L).get();  // Education
