@@ -88,7 +88,6 @@ public class DataInitializer {
             this.seedUser();
             this.seedTopic();
             this.seedDifficulty();
-            
             this.seedTest();
         };
     }
@@ -2125,6 +2124,9 @@ public class DataInitializer {
                     .questionTest(quest)
                     .isAnswer(contentOpt4.equals(contentAnswer) ? 1L : 0L)// 1 is answer, 0 is no answer
                     .build();
+        if(!contentOpt1.equals(contentAnswer) && contentOpt2.equals(contentAnswer) && contentOpt3.equals(contentAnswer) && contentOpt4.equals(contentAnswer)){
+                op4.setIsAnswer(1L);
+        }
             questionOptionRepository.saveAll(List.of(op1, op2, op3, op4));
         }
 
